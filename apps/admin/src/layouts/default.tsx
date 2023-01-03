@@ -11,11 +11,10 @@ import {
 	faGear,
 	faUser,
 	faHouse,
-	faImage,
 	faLeaf,
 	faGlobe,
-	faWallet,
-    faScrewdriverWrench
+	faScrewdriverWrench,
+	faWallet
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
