@@ -14,6 +14,7 @@ import {
 	faImage,
 	faLeaf,
 	faGlobe,
+	faScrewdriverWrench,
 	faWallet
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,7 +44,7 @@ const sidebarCategories: Readonly<SidebarCategoryProps>[] = [
 			{
 				path: "/configuration",
 				name: "Configuration",
-				icon: faImage
+				icon: faScrewdriverWrench
 			}
 		]
 	}
