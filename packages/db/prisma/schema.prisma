@@ -34,7 +34,7 @@ model User {
     walletAddress String  @unique
     emailAddress  String? @unique
     name          String?
-    profileUrl    String?
+    profileUrl    String? @db.Text
     verifier      String?
     typeOfLogin   String?
 
