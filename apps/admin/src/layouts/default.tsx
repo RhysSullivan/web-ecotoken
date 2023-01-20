@@ -14,7 +14,8 @@ import {
 	faLeaf,
 	faGlobe,
 	faScrewdriverWrench,
-	faWallet
+	faWallet,
+	faAddressCard
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
@@ -40,6 +41,11 @@ const sidebarCategories: Readonly<SidebarCategoryProps>[] = [
 				path: "/websites",
 				name: "Websites",
 				icon: faGlobe
+			},
+			{
+				path: "/roles",
+				name: "Roles",
+				icon: faAddressCard
 			},
 			{
 				path: "/configuration",
