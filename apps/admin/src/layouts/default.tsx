@@ -15,7 +15,8 @@ import {
 	faGlobe,
 	faScrewdriverWrench,
 	faWallet,
-	faAddressCard
+	faAddressCard,
+    faHammer
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
@@ -51,6 +52,11 @@ const sidebarCategories: Readonly<SidebarCategoryProps>[] = [
 				path: "/configuration",
 				name: "Configuration",
 				icon: faScrewdriverWrench
+			},
+			{
+				path: "/nft-builder",
+				name: "NFT Builder",
+				icon: faHammer
 			}
 		]
 	}
