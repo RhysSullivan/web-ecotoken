@@ -16,7 +16,7 @@ import {
 	faScrewdriverWrench,
 	faWallet,
 	faAddressCard,
-    faHammer
+	faHammer
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
@@ -112,17 +112,15 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
 
 	return (
 		<>
-			{
-				<Head>
-					<title>EcoToken</title>
-					<meta name="description" content="The EcoToken system." />
-					<meta
-						name="viewport"
-						content="width=device-width, initial-scale=1"
-					/>
-					<link rel="icon" href="/favicon.ico" />
-				</Head>
-			}
+			<Head>
+				<title>EcoToken</title>
+				<meta name="description" content="The EcoToken system." />
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1"
+				/>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
 
 			<div id="grid">
 				<Sidebar
