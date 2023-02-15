@@ -16,7 +16,9 @@ import {
 	faScrewdriverWrench,
 	faWallet,
 	faAddressCard,
-	faHammer
+	faHammer,
+	faLocationDot,
+	faHandHoldingMedical
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
@@ -59,6 +61,27 @@ const sidebarCategories: Readonly<SidebarCategoryProps>[] = [
 				icon: faHammer
 			}
 		]
+	},
+	{
+		name: "ecoProjects",
+		icon: faLeaf,
+		items: [
+			{
+				path: "/eco-projects/benefits",
+				name: "Benefits",
+				icon: faHandHoldingMedical
+			},
+			{
+				path: "/eco-projects/locations",
+				name: "Locations",
+				icon: faLocationDot
+			},
+			{
+				path: "/eco-projects",
+				name: "Projects",
+				icon: faLeaf
+			}
+		]
 	}
 ];
 
@@ -91,7 +114,7 @@ const sidebarItems: SidebarItemProps[] = [
 ];
 
 const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
-	const [expanded, setExpanded] = useState(true);
+	const [sidebarExpanded, setSidebarExpanded] = useState(true);
 
 	const { data: lastSiteID } = trpc.websites.getCurrentSite.useQuery();
 	const { mutateAsync: updateCurrentSite } =
@@ -104,7 +127,7 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
 	const { data: siteData } = trpc.websites.getAll.useInfiniteQuery(
 		{},
 		{
-			getNextPageParam: (info) => info.nextCursor
+			getNextPageParam: (lastPage) => lastPage.nextCursor
 		}
 	);
 
@@ -125,7 +148,7 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
 			<div id="grid">
 				<Sidebar
 					id="sidebar"
-					expanded={expanded}
+					expanded={sidebarExpanded}
 					className="border-r border-slate-300"
 				>
 					<div className="flex">
@@ -185,7 +208,7 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
 							<SidebarCategory
 								name={name}
 								icon={icon}
-								expanded={expanded}
+								expanded={sidebarExpanded}
 								key={categoryIndex}
 							>
 								{items?.map(
@@ -195,7 +218,7 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
 											path={path}
 											name={name}
 											icon={icon}
-											expanded={expanded}
+											expanded={sidebarExpanded}
 										/>
 									)
 								)}
@@ -208,7 +231,7 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
 							path={path}
 							name={name}
 							icon={icon}
-							expanded={expanded}
+							expanded={sidebarExpanded}
 						/>
 					))}
 					<SidebarItem
@@ -217,12 +240,12 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
 							<FontAwesomeIcon
 								icon={faArrowLeft}
 								className={`ease-out ${
-									!expanded && "-rotate-180"
+									!sidebarExpanded && "-rotate-180"
 								}`}
 							/>
 						)}
-						expanded={expanded}
-						onClick={() => setExpanded(!expanded)}
+						expanded={sidebarExpanded}
+						onClick={() => setSidebarExpanded(!sidebarExpanded)}
 						className={clsx(
 							"-mt-2.5 opacity-0 delay-75 duration-200 hover:opacity-100 focus:opacity-100"
 						)}
