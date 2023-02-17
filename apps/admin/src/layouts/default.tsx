@@ -18,7 +18,8 @@ import {
 	faAddressCard,
 	faHammer,
 	faLocationDot,
-	faHandHoldingMedical
+	faHandHoldingMedical,
+	faImages
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
@@ -59,6 +60,11 @@ const sidebarCategories: Readonly<SidebarCategoryProps>[] = [
 				path: "/nft-builder",
 				name: "NFT Builder",
 				icon: faHammer
+			},
+			{
+				path: "/nft-series",
+				name: "NFT Series",
+				icon: faImages
 			}
 		]
 	},
