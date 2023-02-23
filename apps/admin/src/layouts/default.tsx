@@ -19,7 +19,8 @@ import {
 	faHammer,
 	faLocationDot,
 	faHandHoldingMedical,
-	faImages
+	faImages,
+	faShoppingCart
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
@@ -81,6 +82,11 @@ const sidebarCategories: Readonly<SidebarCategoryProps>[] = [
 				path: "/eco-projects/locations",
 				name: "Locations",
 				icon: faLocationDot
+			},
+			{
+				path: "/eco-projects/orders",
+				name: "Orders",
+				icon: faShoppingCart
 			},
 			{
 				path: "/eco-projects",
