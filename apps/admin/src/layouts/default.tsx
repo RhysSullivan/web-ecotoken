@@ -137,12 +137,7 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
 			}
 		});
 
-	const { data: siteData } = trpc.websites.getAll.useInfiniteQuery(
-		{},
-		{
-			getNextPageParam: (lastPage) => lastPage.nextCursor
-		}
-	);
+	const { data: siteData } = trpc.websites.getAll.useInfiniteQuery({});
 
 	const router = useRouter();
 
