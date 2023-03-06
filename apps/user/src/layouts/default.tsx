@@ -28,10 +28,10 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
                     <Navbar>
                         <ul className="flex w-3/5 items-center justify-around text-white">
                             <li>
-                                <Link href="/user">HOME</Link>
+                                <Link href="/">HOME</Link>
                             </li>
                             <li>
-                                <Link href="/user/projects">ALL PROJECTS</Link>
+                                <Link href="/projects">ALL PROJECTS</Link>
                             </li>
                             <li>
                                 <Link href="/user/contactus">CONTACT US</Link>

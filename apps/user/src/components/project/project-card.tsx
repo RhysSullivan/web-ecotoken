@@ -93,7 +93,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                     intent="gray"
                     fullWidth
                     onClick={async () => {
-                        await router.push(`/user/projects/${url}`);
+                        await router.push(`/projects/${url}`);
                     }}
                 >
                     VIEW DETAILS

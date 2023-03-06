@@ -69,7 +69,7 @@ const PurchaseProject = () => {
                         {project.ecoTitle}
                     </h1>
                     <p className="mt-2 text-[18px] font-semibold text-[#656565]">{`${project.location.location} ${project.location.cn}, USA`}</p>
-                    <div className="mt-5 flex">
+                    <div className="mt-5 flex gap-10">
                         <div className="flex flex-col gap-1">
                             <label className="text-[16px] text-[#7E7E7E]">
                                 Credit type
@@ -95,7 +95,6 @@ const PurchaseProject = () => {
                             </span>
                         </div>
                     </div>
-                    <CardTitle className="text-center"></CardTitle>
                     <div className="mt-10 grid w-full grid-cols-2 px-2 py-5">
                         <div className="w-full">
                             <Form
@@ -108,11 +107,11 @@ const PurchaseProject = () => {
                                 }}
                             >
                                 <FormInput
-                                    className="mt-3"
+                                    className="mt-3 text-[#7E7E7E]"
                                     label={
                                         creditType
-                                            ? `Credits (${creditType})`
-                                            : "Credits"
+                                            ? `Number of Credits to purchase (${creditType})`
+                                            : "Number of Credits to purchase"
                                     }
                                     type="number"
                                     size="full"
@@ -125,8 +124,8 @@ const PurchaseProject = () => {
                                     }}
                                 />
                                 <FormSelect
-                                    label="Currency"
-                                    className="mt-3"
+                                    label="Purchase Currency"
+                                    className="mt-3 text-[#7E7E7E]"
                                     size="full"
                                     {...form.register("payType")}
                                     onChange={(e) => {
