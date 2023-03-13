@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Responsive from "@/components/dev-responsive";
 import DetailCard from "@/components/project/detail-card";
 import Overview from "@/components/project/overview";
 import ProjectCard from "@/components/project/project-card";
@@ -39,7 +40,7 @@ const ProjectDetails = () => {
                 <Image
                     src={
                         project.listImage?.startsWith("https")
-                            ? project.listImage
+                            ? project.headImage
                             : `${process.env.NEXT_PUBLIC_CDN_URL}/${project.listImage}`
                     }
                     alt="EcoProject thumbnail image"
@@ -130,10 +131,11 @@ const ProjectDetails = () => {
                     <DetailCard />
                 </div>
             </div>
+            <Responsive />
             {projects && (
                 <div className="mt-[13em]">
-                    <div className="mx-5 border-8 border-[#D9D9D9]"></div>
-                    <h1 className="my-12 text-center text-[36px] uppercase text-[#7E7E7E]">
+                    <div className="mx-5 border-4 border-slate-300"></div>
+                    <h1 className="mt-8 text-center font-head text-[36px] font-semibold uppercase text-slate-600">
                         Other projects for you to explore
                     </h1>
                     <div className="grid w-full grid-cols-3 content-start gap-7  py-[5em] px-[7em]">
