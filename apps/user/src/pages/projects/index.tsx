@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Responsive from "@/components/dev-responsive";
 import ProjectCard from "@/components/project/project-card";
 import PublicLoading from "@/components/public/loading";
 import ProjectsFeatured from "@/components/public/sections/home-banner";
@@ -39,6 +40,7 @@ const Projects = () => {
                 <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center bg-gradient-to-r from-black/70 to-transparent md:w-4/5"></div>
             </div> */}
             <ProjectsFeatured listBannerImage />
+            <Responsive />
             <div className="mx-auto my-5 grid w-full max-w-[360px] grid-cols-1 content-start gap-8 px-10 md:max-w-[768px] md:grid-cols-2 lg:max-w-[1536px] lg:grid-cols-3 xl:grid-cols-4">
                 {data.pages.flatMap(({ projects }) =>
                     projects.map(
