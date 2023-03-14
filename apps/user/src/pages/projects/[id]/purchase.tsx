@@ -1,7 +1,6 @@
-import React, { useMemo } from "react";
-import Image from "next/image";
+import React, { useMemo, useRef } from "react";
 import { useRouter } from "next/router";
-import Responsive from "@/components/dev-responsive";
+import html2canvas from 'html2canvas';
 // import NFTBuilderPreview from "../../../../../admin/src/components/nft-builder-preview";
 import NftPreview from "@/components/project/nft-preview";
 import { createAssociatedTokenAccountInstruction } from "@/utils/transferSplToken/createAssociatedTokenAccountInstruction";
@@ -26,7 +25,7 @@ import {
     SystemProgram,
     Transaction,
     clusterApiUrl,
-    PublicKeyInitData,
+    type PublicKeyInitData,
 } from "@solana/web3.js";
 import Decimal from "decimal.js";
 import { toast } from "react-hot-toast";
@@ -78,6 +77,7 @@ const PurchaseProject = () => {
             payFee: true,
             payHash: true,
             userID: true,
+            image: true
         }),
         defaultValues: {
             creditsPurchased: new Decimal(0),
@@ -87,6 +87,7 @@ const PurchaseProject = () => {
     const { publicKey, wallet, sendTransaction, signTransaction } = useWallet();
 
     const date = useMemo(() => new Date(), []);
+    const nftPreviewRef = useRef<HTMLDivElement | null>(null);
 
     const currency = form.watch("currency");
     let credits;
@@ -138,6 +139,7 @@ const PurchaseProject = () => {
                             credits={credits}
                             retiredBy={retiredBy}
                             date={date}
+                            ref={nftPreviewRef}
                         />
                         {/* <NFTBuilderPreview
                             className="h-[600px] w-[600px]"
@@ -172,12 +174,19 @@ const PurchaseProject = () => {
                                 form={form}
                                 onSubmit={async (data) => {
                                     // TODO: order
+                                    if(!publicKey) toast.error("Please connect a wallet.");
                                     if (
                                         !publicKey ||
                                         !signTransaction ||
                                         !project.nftSeries
                                     )
                                         return;
+
+                                    if (nftPreviewRef.current) {
+                                    const canvas = await html2canvas(
+                                        nftPreviewRef.current,
+                                    );
+                                    document.body.appendChild(canvas);
 
                                     // send USDC to admin wallet
                                     let txId;
@@ -305,8 +314,10 @@ const PurchaseProject = () => {
                                                 project.nftSeries.creditPrice,
                                             ),
                                         payHash: txId,
+                                        image: canvas.toDataURL()
                                     });
                                 }}
+                            }
                             >
                                 <div className="mt-4 flex items-end justify-start">
                                     <FormInput
@@ -338,7 +349,7 @@ const PurchaseProject = () => {
                                 </FormSelect>
 
                                 <div className="inline-block w-[100%] py-2">
-                                    Purchase Price:{" "}
+                                    Purchase Price:{" $"}
                                     {Number(
                                         (Number(credits) *
                                             Number(
