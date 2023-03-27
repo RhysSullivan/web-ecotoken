@@ -15,9 +15,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { trpc } from "@/utils/trpc";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { trpc } from "@/utils/trpc";
 
 const Website = () => {
     const router = useRouter();
@@ -33,7 +33,8 @@ const Website = () => {
             if (typeof id !== "string" && typeof id !== "undefined") id = id[0];
             if (id && id !== selectedSite) await mutateAsync({ siteID: id });
         };
-        asyncFunction();
+        void asyncFunction();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <div>{router.query.id}</div>;

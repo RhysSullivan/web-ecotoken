@@ -99,7 +99,7 @@ const PurchaseProject = () => {
         },
     });
 
-    const { publicKey, wallet, sendTransaction, signTransaction } = useWallet();
+    const { publicKey, signTransaction } = useWallet();
 
     const date = useMemo(() => new Date(), []);
     const nftPreviewRef = useRef<HTMLDivElement | null>(null);
@@ -250,10 +250,13 @@ const PurchaseProject = () => {
                                             undefined,
                                             TOKEN_PROGRAM_ID,
                                         );
+                                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                     } catch (error: any) {
                                         if (
+                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                                             error.message ===
                                                 "TokenAccountNotFoundError" ||
+                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                                             error.message ===
                                                 "TokenInvalidAccountOwnerError"
                                         ) {
@@ -270,16 +273,20 @@ const PurchaseProject = () => {
                                         }
                                     }
                                     try {
+                                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
                                         account = await getAccountInfo(
                                             connection,
                                             adminAssiciatedToken,
                                             undefined,
                                             TOKEN_PROGRAM_ID,
                                         );
+                                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                     } catch (error: any) {
                                         if (
+                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                                             error.message ===
                                                 "TokenAccountNotFoundError" ||
+                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                                             error.message ===
                                                 "TokenInvalidAccountOwnerError"
                                         ) {
@@ -376,7 +383,7 @@ const PurchaseProject = () => {
                                         defaultValue={100}
                                         step="any"
                                         {...form.register("creditsPurchased", {
-                                            min: 0,
+                                            min: 1,
                                         })}
                                     />
                                     <div className="float-left mb-2 inline-block border">
@@ -406,7 +413,7 @@ const PurchaseProject = () => {
                                                 project.nftSeries.creditPrice,
                                             )) /
                                             (currency === "SOL"
-                                                ? // @ts-ignore eslint-disable-next-line
+                                                ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                                                   (price.data.solana
                                                       .usd as number)
                                                 : 1),

@@ -69,7 +69,7 @@ const Story = () => {
         if (fetchingProject) return <Spinner />;
         else {
             toast.error("Project does not exist.");
-            router.push("/eco-projects");
+            void router.push("/eco-projects");
             return null;
         }
     } else
@@ -91,11 +91,13 @@ const Story = () => {
                     <Button
                         fullWidth
                         loading={fetchingProject || isUpdating}
-                        onClick={async () => {
-                            await editMutate({
-                                process,
-                                projectID: id as string,
-                            });
+                        onClick={() => {
+                            void (async () => {
+                                await editMutate({
+                                    process,
+                                    projectID: id as string,
+                                });
+                            })();
                         }}
                     >
                         Update

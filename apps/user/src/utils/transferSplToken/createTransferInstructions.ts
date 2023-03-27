@@ -15,14 +15,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* eslint-disable */
+// @ts-nocheck
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import {
-    AccountMeta,
-    PublicKey,
-    Signer,
     TransactionInstruction,
+    type AccountMeta,
+    type PublicKey,
+    type Signer,
 } from "@solana/web3.js";
-// import BufferLayout from 'buffer-layout'
 import BN from "bn.js";
 
 const BufferLayout = require("buffer-layout");

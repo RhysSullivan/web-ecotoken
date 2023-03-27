@@ -15,28 +15,28 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+// import { PutObjectCommand } from "@aws-sdk/client-s3";
 import {
     DirectSecp256k1HdWallet,
-    DirectSecp256k1Wallet,
+    // DirectSecp256k1Wallet,
 } from "@cosmjs/proto-signing";
 import {
     Metaplex,
     bundlrStorage,
     keypairIdentity,
-    toMetaplexFile,
-    token,
+    // toMetaplexFile,
+    // token,
 } from "@metaplex-foundation/js";
 import { RegenApi } from "@regen-network/api";
-import {
-    QuerySellOrdersByBatchResponse,
-    QueryClientImpl as SellOrderQueryClient,
-} from "@regen-network/api/lib/generated/regen/ecocredit/marketplace/v1/query.js";
-import { MsgBuyDirect } from "@regen-network/api/lib/generated/regen/ecocredit/marketplace/v1/tx.js";
-import {
-    QueryBatchesByProjectResponse,
-    QueryClientImpl as QueryBatchesClient,
-} from "@regen-network/api/lib/generated/regen/ecocredit/v1/query.js";
+// import {
+//     QuerySellOrdersByBatchResponse,
+//     QueryClientImpl as SellOrderQueryClient,
+// } from "@regen-network/api/lib/generated/regen/ecocredit/marketplace/v1/query.js";
+// import { MsgBuyDirect } from "@regen-network/api/lib/generated/regen/ecocredit/marketplace/v1/tx.js";
+// import {
+//     QueryBatchesByProjectResponse,
+//     QueryClientImpl as QueryBatchesClient,
+// } from "@regen-network/api/lib/generated/regen/ecocredit/v1/query.js";
 import { MsgRetire } from "@regen-network/api/lib/generated/regen/ecocredit/v1/tx.js";
 // import TokenStandard
 import {
@@ -47,14 +47,12 @@ import {
     type Cluster,
 } from "@solana/web3.js";
 import { TRPCError } from "@trpc/server";
-import axios from "axios";
 import bs58 from "bs58";
 import { z } from "zod";
 import { type EcoOrder } from "@ecotoken/db";
 
 import { createEcoOrderSchema, updateEcoOrderSchema } from "../../schema/order";
 import { adminAuthedProcedure, authedProcedure, router } from "../../trpc";
-import { s3Client } from "../../utils/s3";
 
 export const ordersRouter = router({
     getAll: authedProcedure
@@ -186,27 +184,30 @@ export const ordersRouter = router({
 
             let vaildInput = false;
             try {
-                const txRes = await axios.get(
+                const txRes = await fetch(
                     `https://api.solscan.io/transaction?tx=${input.payHash}&cluster=devnet`,
                 );
+                /* eslint-disable */
+                const data: any = txRes.json();
                 if (
-                    txRes.data.status === "Success" &&
-                    txRes.data.signer[0] === input.userWallet &&
-                    txRes.data.mainActions[0].action === "spl-transfer" &&
-                    txRes.data.txStatus === "confirmed" &&
-                    txRes.data.mainActions[0].data.source_owner ===
+                    data.status === "Success" &&
+                    data.signer[0] === input.userWallet &&
+                    data.mainActions[0].action === "spl-transfer" &&
+                    data.txStatus === "confirmed" &&
+                    data.mainActions[0].data.source_owner ===
                         input.userWallet &&
-                    txRes.data.mainActions[0].data.destination_owner ===
+                    data.mainActions[0].data.destination_owner ===
                         wallet.publicKey.toString() &&
-                    txRes.data.mainActions[0].data.token.address ===
+                    data.mainActions[0].data.token.address ===
                         process.env.NEXT_PUBLIC_SOLANA_USDC &&
-                    txRes.data.mainActions[0].data.amount ===
+                    data.mainActions[0].data.amount ===
                         series.creditPrice
                             .times(input.creditsPurchased)
                             .times(1e6)
                 ) {
                     vaildInput = true;
                 }
+                /* eslint-enable */
             } catch (error) {
                 throw new TRPCError({
                     code: "UNAUTHORIZED",
@@ -268,7 +269,7 @@ export const ordersRouter = router({
                         code: "CONFLICT",
                     });
 
-                const signedTxBytes: any = await msgClient.sign(
+                const signedTxBytes = await msgClient.sign(
                     account.address,
                     [TEST_MSG_RETIRE],
                     TEST_FEE,
@@ -343,7 +344,7 @@ export const ordersRouter = router({
                 });
 
                 console.log(uri, metadata);
-                const { nft } = await metaplex.nfts().create({
+                await metaplex.nfts().create({
                     uri: uri,
                     name: `ECO NFT`,
                     sellerFeeBasisPoints: 500, // Represents 5.00%.

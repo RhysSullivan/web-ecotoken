@@ -16,13 +16,15 @@
  */
 
 import { forwardRef } from "react";
+
 import Root, { type Props as RootProps } from "../Select";
-import FormField, { type UseFormFieldProps, useFormField } from "./form-field";
+import FormField, { useFormField, type UseFormFieldProps } from "./form-field";
 
 interface Props extends UseFormFieldProps, RootProps {
     name: string;
 }
 
+// eslint-disable-next-line react/display-name
 const FormSelect = forwardRef<HTMLSelectElement, Props>((props, ref) => {
     const { formFieldProps, childProps } = useFormField(props);
 

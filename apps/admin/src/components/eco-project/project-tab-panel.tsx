@@ -31,17 +31,14 @@ const ProjectTabPanel = ({
     const tabPanels = Array(9).fill(0);
     return (
         <>
-            <Tabs
-                defaultIndex={index}
-                className="flex w-full"
-            >
+            <Tabs defaultIndex={index} className="flex w-full">
                 <TabList>
                     {index === 0 ? (
                         <Tab>Project List</Tab>
                     ) : (
                         <Tab
                             onClick={() => {
-                                router.push(`/eco-projects`);
+                                void router.push(`/eco-projects`);
                             }}
                         >
                             Project List
@@ -52,7 +49,9 @@ const ProjectTabPanel = ({
                     ) : (
                         <Tab
                             onClick={() => {
-                                router.push(`/eco-projects/${projectId}/edit`);
+                                void router.push(
+                                    `/eco-projects/${projectId}/edit`,
+                                );
                             }}
                         >
                             Summary
@@ -63,7 +62,7 @@ const ProjectTabPanel = ({
                     ) : (
                         <Tab
                             onClick={() => {
-                                router.push(
+                                void router.push(
                                     `/eco-projects/${projectId}/edit/details`,
                                 );
                             }}
@@ -76,7 +75,7 @@ const ProjectTabPanel = ({
                     ) : (
                         <Tab
                             onClick={() => {
-                                router.push(
+                                void router.push(
                                     `/eco-projects/${projectId}/edit/images`,
                                 );
                             }}
@@ -89,7 +88,7 @@ const ProjectTabPanel = ({
                     ) : (
                         <Tab
                             onClick={() => {
-                                router.push(
+                                void router.push(
                                     `/eco-projects/${projectId}/edit/overview`,
                                 );
                             }}
@@ -102,7 +101,7 @@ const ProjectTabPanel = ({
                     ) : (
                         <Tab
                             onClick={() => {
-                                router.push(
+                                void router.push(
                                     `/eco-projects/${projectId}/edit/story`,
                                 );
                             }}
@@ -115,7 +114,7 @@ const ProjectTabPanel = ({
                     ) : (
                         <Tab
                             onClick={() => {
-                                router.push(
+                                void router.push(
                                     `/eco-projects/${projectId}/edit/process`,
                                 );
                             }}
@@ -128,7 +127,7 @@ const ProjectTabPanel = ({
                     ) : (
                         <Tab
                             onClick={() => {
-                                router.push(
+                                void router.push(
                                     `/eco-projects/${projectId}/edit/series`,
                                 );
                             }}
@@ -141,7 +140,7 @@ const ProjectTabPanel = ({
                     ) : (
                         <Tab
                             onClick={() => {
-                                router.push(
+                                void router.push(
                                     `/eco-projects/${projectId}/edit/orders`,
                                 );
                             }}

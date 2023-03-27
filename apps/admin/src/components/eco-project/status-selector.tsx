@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 interface StatusSelectorProps {
     datas: { key: string; title: string }[];
@@ -44,9 +44,13 @@ const StatusSelector = ({
                 }
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const onStatusClicked = (eve: any, key: string) => {
+    const onStatusClicked = (
+        eve: MouseEvent<HTMLButtonElement>,
+        key: string,
+    ) => {
         if (multiSelect) {
             const newStatuses = [...selectedStatuses];
             if (newStatuses.includes(key)) {
