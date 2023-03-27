@@ -19,7 +19,6 @@ import { type IncomingMessage, type ServerResponse } from "http";
 import { getIronSession } from "iron-session";
 
 import { type AdminSession, type UserSession } from "../..";
-// imported getIronSession from client package
 import { getOptionsBySite } from "./session-options";
 
 export const getClientSession = async (

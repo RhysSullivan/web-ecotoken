@@ -6,7 +6,7 @@
     "scripts": {
         "type-check": "tsc --noEmit",
         "lint": "eslint . --ext .ts,.tsx",
-        "lint:fix": "eslint . --ext .ts,.tsx --fix"
+        "lint:fix": "npm run lint --fix"
     },
     "dependencies": {
         "iron-session": "^6.3.1",

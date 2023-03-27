@@ -16,11 +16,11 @@
  */
 
 import { TRPCError, initTRPC } from "@trpc/server";
-import  { type AdminSession, type UserSession } from "@ecotoken/auth";
+import { type AdminSession, type UserSession } from "@ecotoken/auth";
 import { exclude } from "@ecotoken/db";
 
 import { transformer } from "../transformer";
-import  { type Context } from "./context";
+import { type Context } from "./context";
 import { hasPermission } from "./utils/permission";
 
 type Meta = {
@@ -83,9 +83,11 @@ export const isUserAuthenticated = isAuthenticated.unstable_pipe(
         const session = ctx.session as DeepRequired<UserSession>;
         return next({
             ctx: {
-                // Infers the `session` as non-nullable and excludes the session type when we know for a fact that the user is not an admin
-                ...session,
-                user: exclude(session.user, ["type"]),
+                // Infers the `session` as non-nullable and excludes the session type when we know for a fact that the user is a user
+                session: {
+                    ...session,
+                    user: exclude(session.user, ["type"]),
+                },
             },
         });
     },

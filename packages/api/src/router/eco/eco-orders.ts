@@ -15,6 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+// import { PutObjectCommand } from "@aws-sdk/client-s3";
 import {
     DirectSecp256k1HdWallet,
     // DirectSecp256k1Wallet,
@@ -23,6 +24,7 @@ import {
     Metaplex,
     bundlrStorage,
     keypairIdentity,
+    // toMetaplexFile,
     // token,
 } from "@metaplex-foundation/js";
 import { RegenApi } from "@regen-network/api";
@@ -185,11 +187,10 @@ export const ordersRouter = router({
                 const txRes = await fetch(
                     `https://api.solscan.io/transaction?tx=${input.payHash}&cluster=devnet`,
                 );
-                // temporary fix
                 /* eslint-disable */
                 const data: any = txRes.json();
                 if (
-                    data.status! === "Success" &&
+                    data.status === "Success" &&
                     data.signer[0] === input.userWallet &&
                     data.mainActions[0].action === "spl-transfer" &&
                     data.txStatus === "confirmed" &&
@@ -343,7 +344,7 @@ export const ordersRouter = router({
                 });
 
                 console.log(uri, metadata);
-                /* const { nft } = */ await metaplex.nfts().create({
+                await metaplex.nfts().create({
                     uri: uri,
                     name: `ECO NFT`,
                     sellerFeeBasisPoints: 500, // Represents 5.00%.

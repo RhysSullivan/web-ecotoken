@@ -47,12 +47,10 @@ const StatusSelector = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const onStatusClicked = ({
-        key,
-    }: {
-        event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>;
-        key: string;
-    }) => {
+    const onStatusClicked = (
+        event: MouseEvent<HTMLButtonElement>,
+        key: string,
+    ) => {
         if (multiSelect) {
             const newStatuses = [...selectedStatuses];
             if (newStatuses.includes(key)) {
@@ -86,8 +84,8 @@ const StatusSelector = ({
                                     : selectedStatus == data.key) &&
                                 "bg-[#63fa7c]"
                             }`}
-                            onClick={(eve) =>
-                                onStatusClicked({ event: eve, key: data.key })
+                            onClick={(event) =>
+                                onStatusClicked(event, data.key)
                             }
                         >
                             {data.title}

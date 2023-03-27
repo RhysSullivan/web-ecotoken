@@ -31,10 +31,7 @@ const ProjectTabPanel = ({
     const tabPanels = Array(9).fill(0);
     return (
         <>
-            <Tabs
-                defaultIndex={index}
-                className="flex w-full"
-            >
+            <Tabs defaultIndex={index} className="flex w-full">
                 <TabList>
                     {index === 0 ? (
                         <Tab>Project List</Tab>
@@ -52,7 +49,9 @@ const ProjectTabPanel = ({
                     ) : (
                         <Tab
                             onClick={() => {
-                                void router.push(`/eco-projects/${projectId}/edit`);
+                                void router.push(
+                                    `/eco-projects/${projectId}/edit`,
+                                );
                             }}
                         >
                             Summary

@@ -266,9 +266,12 @@ const Summary = () => {
                                     loading={isDeleting}
                                     fullWidth
                                     onClick={() => {
-                                        void deleteMutate({
-                                            projectID: id as string,
-                                        });
+                                        void (async () => {
+                                            if (location)
+                                                await deleteMutate({
+                                                    projectID: id as string,
+                                                });
+                                        })();
                                     }}
                                 >
                                     Delete

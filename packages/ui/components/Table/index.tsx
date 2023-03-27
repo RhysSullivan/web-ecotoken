@@ -80,6 +80,7 @@ const tableStyles = cva([], {
 export interface TableProps
     extends VariantProps<typeof tableStyles>,
         React.ComponentProps<"table"> {
+    // temporary
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any[];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

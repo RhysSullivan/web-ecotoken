@@ -135,35 +135,33 @@ export const CropImageModal: React.FC<ImageCropModalProps> = ({
                                         </Button>
                                         <Button
                                             ref={finishButtonRef}
-                                            onClick={() => {
-                                                const asyncFunction =
-                                                    async () => {
-                                                        if (!setImage) return;
+                                            onClick={() =>
+                                                void (async () => {
+                                                    if (!setImage) return;
+                                                    if (
+                                                        image &&
+                                                        croppedAreaPixels
+                                                    ) {
+                                                        const croppedImage =
+                                                            await cropImage(
+                                                                image,
+                                                                croppedAreaPixels,
+                                                            );
                                                         if (
-                                                            image &&
-                                                            croppedAreaPixels
-                                                        ) {
-                                                            const croppedImage =
-                                                                await cropImage(
-                                                                    image,
-                                                                    croppedAreaPixels,
-                                                                );
-                                                            if (
-                                                                croppedImage instanceof
-                                                                Error
-                                                            )
-                                                                console.error(
-                                                                    croppedImage,
-                                                                );
-                                                            else
-                                                                setImage(
-                                                                    croppedImage,
-                                                                );
-                                                        }
-                                                        setIsOpen(false);
-                                                    };
-                                                void asyncFunction();
-                                            }}
+                                                            croppedImage instanceof
+                                                            Error
+                                                        )
+                                                            console.error(
+                                                                croppedImage,
+                                                            );
+                                                        else
+                                                            setImage(
+                                                                croppedImage,
+                                                            );
+                                                    }
+                                                    setIsOpen(false);
+                                                })()
+                                            }
                                         >
                                             Finish
                                         </Button>

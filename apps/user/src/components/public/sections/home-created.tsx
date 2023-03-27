@@ -35,7 +35,7 @@ const CreatedByYou = () => {
                 style={{ backgroundImage: `url(${bkgdComputer.src})` }}
             ></div>
             <div
-                className="absolute left-0 top-0 h-[75%] w-[92%] w-[85%] min-w-[480px] justify-end bg-cover bg-right-top sm:flex  sm:h-full sm:w-[85%] lg:w-[64%]"
+                className="absolute left-0 top-0 h-[75%] w-[85%] min-w-[480px] justify-end bg-cover bg-right-top sm:flex  sm:h-full sm:w-[85%] lg:w-[64%]"
                 style={{ backgroundImage: `url(${blue_bevel.src})` }}
             ></div>
             <div className="relative flex w-full max-w-[1280px] pb-[120px] sm:bg-none sm:pt-4 sm:pb-6">

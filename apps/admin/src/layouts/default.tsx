@@ -200,10 +200,12 @@ const DefaultLayout: NextPage<React.PropsWithChildren> = ({ children }) => {
                                     name="Current site"
                                     className="appearance-none bg-transparent text-center"
                                     onChange={(e) => {
-                                        void updateCurrentSite({
-                                            siteID: e.target.value,
-                                        });
-                                        void router.push("/");
+                                        void (async () => {
+                                            await updateCurrentSite({
+                                                siteID: e.target.value,
+                                            });
+                                            await router.push("/");
+                                        })();
                                     }}
                                     value={selectedSiteID}
                                 >

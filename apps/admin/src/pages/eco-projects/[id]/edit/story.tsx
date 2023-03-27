@@ -118,10 +118,12 @@ const Story = () => {
                             fullWidth
                             loading={fetchingProject || isUpdating}
                             onClick={() => {
-                                void editMutate({
-                                    project: story,
-                                    projectID: id as string,
-                                });
+                                void (async () => {
+                                    await editMutate({
+                                        project: story,
+                                        projectID: id as string,
+                                    });
+                                })();
                             }}
                         >
                             Update

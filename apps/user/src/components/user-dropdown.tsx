@@ -122,10 +122,12 @@ const LogoutItem = () => {
 
     return (
         <div
-            onClick={() => {
-                void logout();
-                void disconnect();
-            }}
+            onClick={() =>
+                void (async () => {
+                    await logout();
+                    await disconnect();
+                })()
+            }
             className="ui-active:bg-slate-200 group flex w-full cursor-pointer items-center space-x-2 rounded-md p-2 text-gray-900"
         >
             <FontAwesomeIcon icon={faExternalLink} aria-hidden="true" />

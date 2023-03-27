@@ -231,9 +231,11 @@ const AdminUserEdit = () => {
                                 fullWidth
                                 loading={isDeleting}
                                 onClick={() => {
-                                    void deleteMutate({
-                                        id: id as string,
-                                    });
+                                    void (async () => {
+                                        await deleteMutate({
+                                            id: id as string,
+                                        });
+                                    })();
                                 }}
                             >
                                 Delete

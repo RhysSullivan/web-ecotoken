@@ -170,11 +170,12 @@ const EditEcoOrder = () => {
                         type="button"
                         fullWidth
                         loading={isDeletingOrder}
-                        onClick={() =>
-                            void deleteOrder({
-                                ecoOrderID: id as string,
-                            })
-                        }
+                        onClick={() => {
+                            void (async () =>
+                                await deleteOrder({
+                                    ecoOrderID: id as string,
+                                }))();
+                        }}
                     >
                         Delete
                     </Button>

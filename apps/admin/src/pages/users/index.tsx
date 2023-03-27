@@ -73,9 +73,9 @@ const Users = () => {
                     </div>
                     <div className="flex flex-1 items-end justify-end space-x-2">
                         <Button
-                            onClick={() => {
-                                void router.push(`${router.asPath}/create`);
-                            }}
+                            onClick={() =>
+                                void router.push(`${router.asPath}/create`)
+                            }
                         >
                             Add User
                         </Button>

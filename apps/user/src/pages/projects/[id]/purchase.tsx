@@ -244,21 +244,18 @@ const PurchaseProject = () => {
                                     const transaction = new Transaction();
                                     // let account;
                                     try {
-                                        // account = await getAccountInfo(
-                                        //     connection,
-                                        //     buyerAssiciatedToken,
-                                        //     undefined,
-                                        //     TOKEN_PROGRAM_ID,
-                                        // );
-                                        // @ts-ignore
+                                        account = await getAccountInfo(
+                                            connection,
+                                            buyerAssiciatedToken,
+                                            undefined,
+                                            TOKEN_PROGRAM_ID,
+                                        );
                                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                     } catch (error: any) {
                                         if (
-                                            // @ts-ignore
                                             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                                             error.message ===
                                                 "TokenAccountNotFoundError" ||
-                                            // @ts-ignore
                                             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                                             error.message ===
                                                 "TokenInvalidAccountOwnerError"
@@ -276,21 +273,19 @@ const PurchaseProject = () => {
                                         }
                                     }
                                     try {
-                                        // account = await getAccountInfo(
-                                        //     connection,
-                                        //     adminAssiciatedToken,
-                                        //     undefined,
-                                        //     TOKEN_PROGRAM_ID,
-                                        // );
-                                        // @ts-ignore
+                                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                                        account = await getAccountInfo(
+                                            connection,
+                                            adminAssiciatedToken,
+                                            undefined,
+                                            TOKEN_PROGRAM_ID,
+                                        );
                                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                     } catch (error: any) {
                                         if (
-                                            // @ts-ignore
                                             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                                             error.message ===
                                                 "TokenAccountNotFoundError" ||
-                                            // @ts-ignore
                                             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                                             error.message ===
                                                 "TokenInvalidAccountOwnerError"

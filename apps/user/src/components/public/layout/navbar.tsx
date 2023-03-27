@@ -81,7 +81,8 @@ const PublicNavbar = () => {
 
                 // console.log(`Message signature: ${bs58.encode(signature)}`);
             } catch (error: unknown) {
-                console.log(`Signing failed: ${error}`);
+                // @ts-ignore
+                console.log(`Signing failed: ${error?.message}`);
             }
         };
         void main();

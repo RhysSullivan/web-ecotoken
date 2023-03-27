@@ -9,15 +9,15 @@
         "clean:windows": "del /f /s node_modules",
         "clean:default": "rm -rf node_modules",
         "start": "next start",
+        "type-check": "tsc --noEmit",
         "lint": "next lint",
-        "lint:fix": "npm run lint --fix",
-        "type-check": "tsc --noEmit"
+        "lint:fix": "npm run lint --fix"
     },
     "dependencies": {
-        "@cosmjs/cosmwasm-stargate": "^0.30.0",
+        "@cosmjs/cosmwasm-stargate": "^0.28.11",
         "@cosmjs/launchpad": "^0.27.1",
-        "@cosmjs/stargate": "^0.30.0",
-        "@cosmos-client/core": "^0.46.1",
+        "@cosmjs/stargate": "^0.28.11",
+        "@cosmos-client/core": "^0.45.9",
         "@ecotoken/api": "^0.0.0",
         "@ecotoken/auth": "^0.0.0",
         "@ecotoken/db": "^0.0.0",
@@ -28,7 +28,6 @@
         "@fortawesome/free-solid-svg-icons": "^6.3.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@headlessui/react": "^1.7.13",
-        "@regen-network/api": "^0.5.0",
         "@solana/spl-token": "^0.3.7",
         "@solana/wallet-adapter-base": "^0.9.22",
         "@solana/wallet-adapter-react": "^0.15.30",
@@ -53,7 +52,6 @@
         "zod": "^3.21.4"
     },
     "devDependencies": {
-        "@types/coingecko-api": "^1.0.10",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.11"

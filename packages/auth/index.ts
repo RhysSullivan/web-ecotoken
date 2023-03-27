@@ -15,29 +15,30 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export {
-	ironOptions,
-	adminIronOptions
-} from "./src/iron-session/session-options";
-export type { IronSessionData } from "iron-session";
-import  { type IronSession } from "iron-session";
+import { type IronSession } from "iron-session";
 import { type Permission } from "@ecotoken/db";
 
+export {
+    ironOptions,
+    adminIronOptions,
+} from "./src/iron-session/session-options";
+export type { IronSessionData } from "iron-session";
+
 export type UserSession = {
-	user?: {
-		type: "user";
-		id: string;
-		permissions?: Permission[];
-		ipAddress?: string;
-	};
+    user?: {
+        type: "user";
+        id: string;
+        permissions?: Permission[];
+        ipAddress?: string;
+    };
 } & IronSession;
 
 export type AdminSession = {
-	user?: {
-		type: "admin";
-		id: string;
-		permissions?: Permission[];
-		ipAddress?: string;
-		selectedSite?: string;
-	};
+    user?: {
+        type: "admin";
+        id: string;
+        permissions?: Permission[];
+        ipAddress?: string;
+        selectedSite?: string;
+    };
 } & IronSession;
