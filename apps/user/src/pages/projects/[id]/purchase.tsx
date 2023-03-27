@@ -250,6 +250,7 @@ const PurchaseProject = () => {
                                             undefined,
                                             TOKEN_PROGRAM_ID,
                                         );
+                                        // @ts-ignore
                                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                     } catch (error: any) {
                                         if (
@@ -280,6 +281,7 @@ const PurchaseProject = () => {
                                             undefined,
                                             TOKEN_PROGRAM_ID,
                                         );
+                                        // @ts-ignore
                                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                     } catch (error: any) {
                                         if (
@@ -377,10 +379,8 @@ const PurchaseProject = () => {
                                 <div className="mt-4 flex items-end justify-start">
                                     <FormInput
                                         className="float-left mt-3 mr-0 w-48"
-                                        id="creditamt"
                                         type="number"
                                         label="Amount of Credits to Purchase"
-                                        defaultValue={100}
                                         step="any"
                                         {...form.register("creditsPurchased", {
                                             min: 1,

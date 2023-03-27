@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Fragment } from "react";
+import { Fragment, forwardRef } from "react";
 import { trpc } from "@/utils/trpc";
 import {
     faChevronDown,
@@ -25,6 +25,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Menu as HeadlessMenu, Transition } from "@headlessui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
+import clsx from "clsx";
 import {
     Menu,
     MenuButton,
@@ -114,18 +115,20 @@ const UserDropdown = () => {
     );
 };
 
-const LogoutItem = () => {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    const { disconnect } = useWallet();
+// eslint-disable-next-line react/display-name
+const LogoutItem = forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
+    ({ className, ...props }, ref) => {
+        // eslint-disable-next-line @typescript-eslint/unbound-method
+        const { disconnect, publicKey } = useWallet();
 
-    const { mutateAsync: logout } = trpc.userAuth.logout.useMutation({});
+        const { mutateAsync: logout } = trpc.userAuth.logout.useMutation({});
 
     return (
         <div
             onClick={() =>
                 void (async () => {
-                    await logout();
                     await disconnect();
+                    await logout();
                 })()
             }
             className="ui-active:bg-slate-200 group flex w-full cursor-pointer items-center space-x-2 rounded-md p-2 text-gray-900"
