@@ -119,24 +119,30 @@ const UserDropdown = () => {
 const LogoutItem = forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
     ({ className, ...props }, ref) => {
         // eslint-disable-next-line @typescript-eslint/unbound-method
-        const { disconnect, publicKey } = useWallet();
+        const { disconnect } = useWallet();
 
         const { mutateAsync: logout } = trpc.userAuth.logout.useMutation({});
 
-    return (
-        <div
-            onClick={() =>
-                void (async () => {
-                    await disconnect();
-                    await logout();
-                })()
-            }
-            className="ui-active:bg-slate-200 group flex w-full cursor-pointer items-center space-x-2 rounded-md p-2 text-gray-900"
-        >
-            <FontAwesomeIcon icon={faExternalLink} aria-hidden="true" />
-            <span>Logout</span>
-        </div>
-    );
-};
+        return (
+            <div
+                {...props}
+                ref={ref}
+                onClick={() =>
+                    void (async () => {
+                        await disconnect();
+                        await logout();
+                    })()
+                }
+                className={clsx(
+                    "ui-active:bg-slate-200 group flex w-full cursor-pointer items-center space-x-2 rounded-md p-2 text-gray-900",
+                    className,
+                )}
+            >
+                <FontAwesomeIcon icon={faExternalLink} aria-hidden="true" />
+                <span>Logout</span>
+            </div>
+        );
+    },
+);
 
 export default UserDropdown;
