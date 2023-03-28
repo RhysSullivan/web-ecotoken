@@ -9,23 +9,20 @@
         "lint": "eslint . --ext .ts,.tsx",
         "lint:fix": "npm run lint --fix"
     },
-    "devDependencies": {
+    "dependencies": {
         "@types/node": "^18.11.18",
         "@types/nodemailer": "^6.4.7",
         "next": "^13.2.3",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "@ecotoken/tailwind-config": "^0.0.0",
-        "@ecotoken/ui": "^0.0.0",
+        "@ecotoken/tailwind-config": "*",
+        "@ecotoken/ui": "*",
         "nodemailer": "^6.9.1"
     },
-    "peerDependencies": {
-        "next": "^13.0.5",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "@ecotoken/tailwind-config": "^0.0.0",
-        "@ecotoken/ui": "^0.0.0",
-        "nodemailer": "^6.9.1"
+    "devDependencies": {
+        "@ecotoken/eslint-config": "*",
+        "eslint": "^8.36.0",
+        "typescript": "^5.0.2"
     },
     "license": "AGPL-3.0-or-later"
 }

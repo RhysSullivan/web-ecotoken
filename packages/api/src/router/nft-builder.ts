@@ -22,11 +22,11 @@
 
 // import { formatCountryAndState } from "../../../../apps/admin/src/utils/formatter";
 // import { createNFTSchema } from "../schema/nft-builder";
-import { router } from "../trpc";
+import { createTRPCRouter } from "../trpc";
 
 // import { s3Client } from "../utils/s3";
 
-export const nftBuilderRouter = router({
+export const nftBuilderRouter = createTRPCRouter({
     // mint: adminAuthedProcedure
     //     .input(createNFTSchema)
     //     .mutation(
