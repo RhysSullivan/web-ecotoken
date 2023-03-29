@@ -24,17 +24,22 @@ jobs:
                   node-version: 18
                   cache: 'npm'
 
+            - name: Get pnpm store directory
+              id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
+              run: |
+                echo "npm-cache-dir=$(npm get cache)" >> $GITHUB_OUTPUT
+
             - name: Setup cache
               uses: actions/cache@v3
-              id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
+              id: cache
               with:
-                path: ${{ steps.npm-cache-dir.outputs.dir }}
+                path: ${{ steps.npm-cache.outputs.npm_cache_dir }}
                 key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
                 restore-keys: |
                   ${{ runner.os }}-node-
 
             - name: Install Dependencies
-              if: steps.npm-cache.outputs.cache-hit != 'true'
+              if: steps.cache.outputs.cache-hit != 'true'
               run: npm ci
 
             - name: Typecheck
