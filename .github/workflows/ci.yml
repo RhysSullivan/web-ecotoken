@@ -24,7 +24,7 @@ jobs:
                   node-version: 18
                   cache: 'npm'
 
-            - name: Get pnpm store directory
+            - name: Get npm cache directory
               id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
               run: |
                 echo "npm-cache-dir=$(npm get cache)" >> $GITHUB_OUTPUT
