@@ -1,6 +1,9 @@
 name: CI
 
-on: [pull_request]
+on:
+  pull_request:
+    branches: ["*"]
+  merge_group:
     
 
 # You can leverage Vercel Remote Caching with Turbo to speed up your builds
@@ -22,25 +25,23 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: 18
-                  cache: 'npm'
 
             - name: Get npm cache directory
-              id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
+              id: cache
               run: |
                 echo "npm-cache-dir=$(npm config get cache)" >> $GITHUB_OUTPUT
 
             - name: Setup cache
               uses: actions/cache@v3
-              id: cache
+              id: npm-cache # use this to check for `cache-hit` ==> if: steps.cache.outputs.npm-cache-hit != 'true'
               with:
-                path: ${{ steps.npm-cache.outputs.npm_cache_dir }}
+                path: ${{ steps.cache.outputs.npm-cache-dir }}
                 key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
                 restore-keys: |
                   ${{ runner.os }}-node-
 
             - name: Install Dependencies
-              if: steps.cache.outputs.cache-hit != 'true'
-              run: npm ci
+              run: npm ci --cache ${{ steps.cache.outputs.npm-cache-dir }} --prefer-offline --no-audit
 
             - name: Typecheck
               run: npm run type-check
