@@ -22,7 +22,7 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: 18
-                  cache: "npm"
+                  cache: 'npm'
 
             - name: Setup cache
               uses: actions/cache@v3
@@ -34,7 +34,8 @@ jobs:
                   ${{ runner.os }}-node-
 
             - name: Install Dependencies
-              run: npm install
+              if: steps.npm-cache.outputs.cache-hit != 'true'
+              run: npm ci
 
             - name: Typecheck
               run: npm run type-check
