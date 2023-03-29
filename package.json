@@ -33,7 +33,7 @@
         "@ecotoken/prettier-config": "*",
         "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
         "@types/prettier": "^2.7.2",
-        "dotenv-cli": "^7.0.0",
+        "dotenv-cli": "^7.1.0",
         "prettier": "^2.8.7",
         "prettier-plugin-tailwindcss": "^0.2.6",
         "run-script-os": "^1.1.6",
