@@ -388,6 +388,9 @@ importers:
 
   packages/auth:
     dependencies:
+      '@ecotoken/db':
+        specifier: '*'
+        version: link:../db
       iron-session:
         specifier: ^6.3.1
         version: 6.3.1
