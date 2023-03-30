@@ -3,15 +3,13 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "next dev --port 3000",
         "build": "next build",
-        "clean": "run-script-os",
-        "clean:windows": "del /f /s node_modules",
-        "clean:default": "rm -rf node_modules",
         "start": "next start",
-        "type-check": "tsc --noEmit",
-        "lint": "next lint",
-        "lint:fix": "npm run lint --fix"
+        "clean": "git clean -xdf .next .turbo node_modules",
+        "lint": "SKIP_ENV_VALIDATION=1 next lint",
+        "lint:fix": "pnpm lint --fix",
+        "type-check": "tsc --noEmit"
     },
     "dependencies": {
         "@cosmjs/cosmwasm-stargate": "^0.30.1",
@@ -49,6 +47,7 @@
         "react-dom": "18.2.0",
         "react-hook-form": "^7.43.8",
         "react-hot-toast": "^2.4.0",
+        "sharp": "^0.32.0",
         "zod": "^3.21.4"
     },
     "devDependencies": {
