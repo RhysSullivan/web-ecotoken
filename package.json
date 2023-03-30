@@ -22,14 +22,14 @@
         "@ecotoken/eslint-config": "*",
         "@ecotoken/prettier-config": "*",
         "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
-        "@types/prettier": "^2.7.2",
         "@manypkg/cli": "^0.20.0",
+        "@types/prettier": "^2.7.2",
         "dotenv-cli": "^7.1.0",
+        "eslint": "^8.37.0",
         "prettier": "^2.8.7",
         "prettier-plugin-tailwindcss": "^0.2.6",
         "run-script-os": "^1.1.6",
         "turbo": "^1.8.7",
-        "eslint": "^8.37.0",
         "typescript": "^5.0.2"
     },
     "license": "AGPL-3.0-or-later"

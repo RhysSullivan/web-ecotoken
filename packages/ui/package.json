@@ -12,9 +12,6 @@
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
-        "next": "^13.2.4",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
         "@fortawesome/fontawesome-svg-core": "^6.4.0",
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
@@ -22,6 +19,9 @@
         "@tanstack/react-table": "^8.8.4",
         "class-variance-authority": "^0.4.0",
         "clsx": "^1.2.1",
+        "next": "^13.2.4",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
         "react-dropzone": "^14.2.3",
         "react-easy-crop": "^4.7.4"
     },
