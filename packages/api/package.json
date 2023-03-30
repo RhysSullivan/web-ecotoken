@@ -5,11 +5,9 @@
     "types": "./index.ts",
     "private": true,
     "scripts": {
-        "clean": "run-script-os",
-        "clean:windows": "del /f /s node_modules",
-        "clean:default": "rm -rf node_modules",
-        "lint": "eslint . --ext .ts,.tsx",
-        "lint:fix": "npm run lint --fix",
+        "clean": "git clean -xdf .turbo node_modules",
+        "lint": "eslint .",
+        "lint:fix": "pnpm lint --fix",
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
