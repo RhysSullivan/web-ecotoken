@@ -46,7 +46,6 @@ import Form, {
     FormSelect,
     useZodForm,
 } from "@ecotoken/ui/components/Form";
-import Spinner from "@ecotoken/ui/components/Spinner";
 
 import { formatCountryAndState } from "../../../../../admin/src/utils/formatter";
 
@@ -131,7 +130,7 @@ const PurchaseProject = () => {
     const { mutateAsync: createPresignedUrl } =
         trpc.spaces.createPresignedUrls.useMutation();
 
-    const { data: price, isLoading: isPriceLoading } = useQuery({
+    const { data: price } = useQuery({
         queryKey: ["fetchCoinPrice"],
         queryFn: coinPriceQuery,
         enabled: currency === "SOL",
