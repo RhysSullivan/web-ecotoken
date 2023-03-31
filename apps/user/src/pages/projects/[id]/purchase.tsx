@@ -35,7 +35,7 @@ import {
     Transaction,
     type PublicKeyInitData,
 } from "@solana/web3.js";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Decimal from "decimal.js";
 import html2canvas from "html2canvas";
 import { toast } from "react-hot-toast";
@@ -46,6 +46,7 @@ import Form, {
     FormSelect,
     useZodForm,
 } from "@ecotoken/ui/components/Form";
+import Spinner from "@ecotoken/ui/components/Spinner";
 
 import { formatCountryAndState } from "../../../../../admin/src/utils/formatter";
 
@@ -82,7 +83,14 @@ const PurchaseProject = () => {
             },
         });
 
-    // const { data: price } = trpc.coinPrice.get.useQuery();
+    const coinPriceQuery = async () => {
+        const response = await fetch(
+            "https://api.coingecko.com/api/v3/simple/price?ids=solana&include_last_updated_at=true&vs_currencies=usd",
+        );
+        return (await response.json()) as {
+            solana: { usd: number; last_updated_at: number };
+        };
+    };
 
     const form = useZodForm({
         schema: createEcoOrderSchema.omit({
@@ -104,7 +112,7 @@ const PurchaseProject = () => {
     const date = useMemo(() => new Date(), []);
     const nftPreviewRef = useRef<HTMLDivElement | null>(null);
 
-    // const currency = form.watch("currency");
+    const currency = form.watch("currency");
     let credits;
     try {
         credits = form.watch("creditsPurchased").toNumber();
@@ -122,6 +130,20 @@ const PurchaseProject = () => {
 
     const { mutateAsync: createPresignedUrl } =
         trpc.spaces.createPresignedUrls.useMutation();
+
+    const { data: price, isLoading: isPriceLoading } = useQuery({
+        queryKey: ["fetchCoinPrice"],
+        queryFn: coinPriceQuery,
+        enabled: currency === "SOL",
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        onSuccess(data) {
+            console.log(`Fetched solana price: $${data.solana.usd} USD`);
+        },
+        onError(error) {
+            console.log("Failed to fetch solana price", error);
+        },
+    });
 
     if (!project) return <>Loading...</>;
 
@@ -395,30 +417,29 @@ const PurchaseProject = () => {
                                     className="mt-3 w-48"
                                     {...form.register("currency")}
                                 >
-                                    {/* {createEcoOrderSchema.shape.currency.options.map(
+                                    {createEcoOrderSchema.shape.currency.options.map(
                                         (type) => (
                                             <option key={type} value={type}>
                                                 {type}
                                             </option>
                                         ),
-                                    )} */}
-                                    <option>USDC</option>
+                                    )}
                                 </FormSelect>
 
-                                <div className="inline-block w-[100%] py-2">
-                                    Purchase Price:{" $"}
-                                    {Number(
-                                        Number(credits) *
-                                            Number(
-                                                project.nftSeries.creditPrice,
-                                            ) /*/
-                                            (currency === "SOL"
-                                                ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                                                  (price.data.solana
-                                                      .usd as number)
-                                                : 1),*/,
-                                    ).toFixed(2)}
-                                </div>
+                                {price && (
+                                    <div className="inline-block w-[100%] py-2">
+                                        Purchase Price:{" $"}
+                                        {Number(
+                                            Number(credits) *
+                                                (currency === "SOL"
+                                                    ? price.solana.usd
+                                                    : Number(
+                                                          project.nftSeries
+                                                              .creditPrice,
+                                                      )),
+                                        ).toFixed(2)}
+                                    </div>
+                                )}
                                 <FormInput
                                     size="full"
                                     label="Retired By"
