@@ -85,7 +85,7 @@ jobs:
             - name: Install dependencies (with cache)
               run: pnpm install --ignore-scripts
 
-            - run: pnpm format
+            - run: pnpm format:check
 
     typecheck:
         name: Run Typechecker

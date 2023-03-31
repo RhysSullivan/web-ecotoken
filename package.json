@@ -12,6 +12,7 @@
         "db:studio": "pnpm with-env turbo db:studio",
         "dev": "pnpm with-env turbo dev --parallel --concurrency 12",
         "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore",
+        "format:check": "prettier --check *.{cjs,md,json} --ignore-unknown --no-error-on-unmatched-pattern",
         "lint": "turbo lint && manypkg check",
         "lint:fix": "turbo lint:fix && manypkg fix",
         "type-check": "pnpm with-env turbo type-check",
