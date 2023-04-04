@@ -250,7 +250,7 @@ const PurchaseProject = () => {
                                     // send USDC to admin wallet
                                     let txId;
                                     const transaction = new Transaction();
-                                    if (currency === "USDC") {
+                                    if (data.currency === "USDC") {
                                         const buyerAssiciatedToken =
                                             await getAssociatedTokenAddress(
                                                 mint,
@@ -425,7 +425,6 @@ const PurchaseProject = () => {
                                                     ),
                                                 payHash: txId,
                                                 image: `${process.env.NEXT_PUBLIC_CDN_URL}/${imageURL}`,
-                                                currency,
                                             });
                                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                         } catch (error: any) {
