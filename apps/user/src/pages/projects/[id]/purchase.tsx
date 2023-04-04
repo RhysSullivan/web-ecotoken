@@ -31,7 +31,9 @@ import {
 } from "@solana/spl-token";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import {
+    LAMPORTS_PER_SOL,
     PublicKey,
+    SystemProgram,
     Transaction,
     type PublicKeyInitData,
 } from "@solana/web3.js";
@@ -223,10 +225,13 @@ const PurchaseProject = () => {
                                 onSubmit={async (data) => {
                                     if (!publicKey)
                                         toast.error("Please connect a wallet.");
+                                    if (!price)
+                                        toast.error("Fetch SOL price failed.");
                                     if (
                                         !publicKey ||
                                         !signTransaction ||
-                                        !project.nftSeries
+                                        !project.nftSeries ||
+                                        !price
                                     )
                                         return;
 
@@ -244,88 +249,88 @@ const PurchaseProject = () => {
 
                                     // send USDC to admin wallet
                                     let txId;
-                                    const buyerAssiciatedToken =
-                                        await getAssociatedTokenAddress(
-                                            mint,
-                                            publicKey,
-                                            false,
-                                            TOKEN_PROGRAM_ID,
-                                            ASSOCIATED_TOKEN_PROGRAM_ID,
-                                        );
-
-                                    const adminAssiciatedToken =
-                                        await getAssociatedTokenAddress(
-                                            mint,
-                                            adminKey,
-                                            false,
-                                            TOKEN_PROGRAM_ID,
-                                            ASSOCIATED_TOKEN_PROGRAM_ID,
-                                        );
-
                                     const transaction = new Transaction();
-                                    let account;
-                                    try {
-                                        account = await getAccountInfo(
-                                            connection,
-                                            buyerAssiciatedToken,
-                                            undefined,
-                                            TOKEN_PROGRAM_ID,
-                                        );
-                                        // @ts-ignore
-                                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                    } catch (error: any) {
-                                        if (
-                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                                            error.message ===
-                                                "TokenAccountNotFoundError" ||
-                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                                            error.message ===
-                                                "TokenInvalidAccountOwnerError"
-                                        ) {
-                                            transaction.add(
-                                                createAssociatedTokenAccountInstruction(
-                                                    publicKey,
-                                                    buyerAssiciatedToken,
-                                                    publicKey,
-                                                    mint,
-                                                    TOKEN_PROGRAM_ID,
-                                                    ASSOCIATED_TOKEN_PROGRAM_ID,
-                                                ),
+                                    if (currency === "USDC") {
+                                        const buyerAssiciatedToken =
+                                            await getAssociatedTokenAddress(
+                                                mint,
+                                                publicKey,
+                                                false,
+                                                TOKEN_PROGRAM_ID,
+                                                ASSOCIATED_TOKEN_PROGRAM_ID,
                                             );
-                                        }
-                                    }
-                                    try {
-                                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                                        account = await getAccountInfo(
-                                            connection,
-                                            adminAssiciatedToken,
-                                            undefined,
-                                            TOKEN_PROGRAM_ID,
-                                        );
-                                        // @ts-ignore
-                                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                    } catch (error: any) {
-                                        if (
-                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                                            error.message ===
-                                                "TokenAccountNotFoundError" ||
-                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                                            error.message ===
-                                                "TokenInvalidAccountOwnerError"
-                                        ) {
-                                            transaction.add(
-                                                createAssociatedTokenAccountInstruction(
-                                                    publicKey,
-                                                    adminAssiciatedToken,
-                                                    adminKey,
-                                                    mint,
-                                                    TOKEN_PROGRAM_ID,
-                                                    ASSOCIATED_TOKEN_PROGRAM_ID,
-                                                ),
+
+                                        const adminAssiciatedToken =
+                                            await getAssociatedTokenAddress(
+                                                mint,
+                                                adminKey,
+                                                false,
+                                                TOKEN_PROGRAM_ID,
+                                                ASSOCIATED_TOKEN_PROGRAM_ID,
                                             );
+
+                                        let account;
+                                        try {
+                                            account = await getAccountInfo(
+                                                connection,
+                                                buyerAssiciatedToken,
+                                                undefined,
+                                                TOKEN_PROGRAM_ID,
+                                            );
+                                            // @ts-ignore
+                                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                        } catch (error: any) {
+                                            if (
+                                                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                                                error.message ===
+                                                    "TokenAccountNotFoundError" ||
+                                                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                                                error.message ===
+                                                    "TokenInvalidAccountOwnerError"
+                                            ) {
+                                                transaction.add(
+                                                    createAssociatedTokenAccountInstruction(
+                                                        publicKey,
+                                                        buyerAssiciatedToken,
+                                                        publicKey,
+                                                        mint,
+                                                        TOKEN_PROGRAM_ID,
+                                                        ASSOCIATED_TOKEN_PROGRAM_ID,
+                                                    ),
+                                                );
+                                            }
                                         }
-                                    }
-                                    try {
+                                        try {
+                                            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                                            account = await getAccountInfo(
+                                                connection,
+                                                adminAssiciatedToken,
+                                                undefined,
+                                                TOKEN_PROGRAM_ID,
+                                            );
+                                            // @ts-ignore
+                                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                        } catch (error: any) {
+                                            if (
+                                                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                                                error.message ===
+                                                    "TokenAccountNotFoundError" ||
+                                                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                                                error.message ===
+                                                    "TokenInvalidAccountOwnerError"
+                                            ) {
+                                                transaction.add(
+                                                    createAssociatedTokenAccountInstruction(
+                                                        publicKey,
+                                                        adminAssiciatedToken,
+                                                        adminKey,
+                                                        mint,
+                                                        TOKEN_PROGRAM_ID,
+                                                        ASSOCIATED_TOKEN_PROGRAM_ID,
+                                                    ),
+                                                );
+                                            }
+                                        }
                                         transaction.add(
                                             createTransferInstruction(
                                                 buyerAssiciatedToken, // source
@@ -341,6 +346,31 @@ const PurchaseProject = () => {
                                                 TOKEN_PROGRAM_ID,
                                             ),
                                         );
+                                    } else {
+                                        const instruction =
+                                            SystemProgram.transfer({
+                                                fromPubkey: publicKey,
+                                                toPubkey: adminKey,
+                                                lamports: Math.ceil(
+                                                    LAMPORTS_PER_SOL *
+                                                        Number(
+                                                            (data.creditsPurchased.toNumber() *
+                                                                Number(
+                                                                    project
+                                                                        .nftSeries
+                                                                        .creditPrice,
+                                                                )) /
+                                                                price.solana
+                                                                    .usd,
+                                                        ) *
+                                                        1.01,
+                                                ),
+                                            });
+
+                                        transaction.add(instruction);
+                                    }
+
+                                    try {
                                         transaction.feePayer = publicKey;
                                         transaction.recentBlockhash = (
                                             await connection.getLatestBlockhash()
@@ -357,10 +387,10 @@ const PurchaseProject = () => {
                                             txId,
                                         );
                                         toast.success(
-                                            "USDC Successfully transferred. NFT is processing.",
+                                            "Payment Successfully transferred. NFT is processing.",
                                         );
                                     } catch (error) {
-                                        toast.error("Transfer USDC failed");
+                                        toast.error("Transfer Payment failed");
                                         return;
                                     }
 
@@ -378,22 +408,31 @@ const PurchaseProject = () => {
                                             url,
                                         });
 
-                                        await mutateAsync({
-                                            ...data,
-                                            nftSeriesID:
-                                                project.nftSeries
-                                                    ?.nftSeriesID ?? "",
-                                            userWallet: publicKey?.toBase58(),
-                                            payFee: 0,
-                                            payAmount:
-                                                data.creditsPurchased.toNumber() *
-                                                Number(
+                                        try {
+                                            await mutateAsync({
+                                                ...data,
+                                                nftSeriesID:
                                                     project.nftSeries
-                                                        .creditPrice,
-                                                ),
-                                            payHash: txId,
-                                            image: `${process.env.NEXT_PUBLIC_CDN_URL}/${imageURL}`,
-                                        });
+                                                        ?.nftSeriesID ?? "",
+                                                userWallet:
+                                                    publicKey?.toBase58(),
+                                                payFee: 0,
+                                                payAmount:
+                                                    data.creditsPurchased.toNumber() *
+                                                    Number(
+                                                        project.nftSeries
+                                                            .creditPrice,
+                                                    ),
+                                                payHash: txId,
+                                                image: `${process.env.NEXT_PUBLIC_CDN_URL}/${imageURL}`,
+                                                currency,
+                                            });
+                                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                        } catch (error: any) {
+                                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
+                                            toast.error(error.message);
+                                            return;
+                                        }
                                     }
                                 }}
                             >
@@ -427,16 +466,20 @@ const PurchaseProject = () => {
 
                                 {price && (
                                     <div className="inline-block w-[100%] py-2">
-                                        Purchase Price:{" $"}
+                                        Purchase Price:
+                                        {currency !== "SOL" ? " $" : " "}
                                         {Number(
-                                            Number(credits) *
+                                            ((Number(credits) *
+                                                Number(
+                                                    project.nftSeries
+                                                        .creditPrice,
+                                                )) /
                                                 (currency === "SOL"
                                                     ? price.solana.usd
-                                                    : Number(
-                                                          project.nftSeries
-                                                              .creditPrice,
-                                                      )),
-                                        ).toFixed(2)}
+                                                    : 1)) *
+                                                1.01,
+                                        ).toFixed(3)}{" "}
+                                        {currency === "SOL" && " SOL"}
                                     </div>
                                 )}
                                 <FormInput
