@@ -28,7 +28,7 @@ export const createEcoOrderSchema = z.object({
     retireBy: z.string().min(1, "Please enter your name."),
     userWallet: z.string(),
     creditsPurchased: decimal(12, 6),
-    currency: z.enum(["SOL", "USDC"]),
+    currency: z.enum(["USDC", "SOL"]),
     payAmount: z.number(),
     payFee: decimal(12, 6),
     payHash: z.string(),
