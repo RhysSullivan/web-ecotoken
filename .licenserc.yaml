@@ -20,7 +20,7 @@ header:
 
     paths-ignore:
         - ".github"
-        "*.mdx"
+        - "*.mdx"
         - "packages/ui/seed-data"
         - "dist"
         - "licenses"
