@@ -1,18 +1,3 @@
-# Copyright (C) 2023 EcoToken Systems
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
 lockfileVersion: '6.0'
 
 importers:
@@ -98,17 +83,17 @@ importers:
         specifier: ^4.28.0
         version: 4.28.0(react-dom@18.2.0)(react-native@0.71.5)(react@18.2.0)
       '@trpc/client':
-        specifier: ^10.18.0
-        version: 10.18.0(@trpc/server@10.18.0)
+        specifier: ^10.19.1
+        version: 10.19.1(@trpc/server@10.19.1)
       '@trpc/next':
-        specifier: ^10.18.0
-        version: 10.18.0(@tanstack/react-query@4.28.0)(@trpc/client@10.18.0)(@trpc/react-query@10.18.0)(@trpc/server@10.18.0)(next@13.2.4)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.19.1
+        version: 10.19.1(@tanstack/react-query@4.28.0)(@trpc/client@10.19.1)(@trpc/react-query@10.19.1)(@trpc/server@10.19.1)(next@13.2.4)(react-dom@18.2.0)(react@18.2.0)
       '@trpc/react-query':
-        specifier: ^10.18.0
-        version: 10.18.0(@tanstack/react-query@4.28.0)(@trpc/client@10.18.0)(@trpc/server@10.18.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.19.1
+        version: 10.19.1(@tanstack/react-query@4.28.0)(@trpc/client@10.19.1)(@trpc/server@10.19.1)(react-dom@18.2.0)(react@18.2.0)
       '@trpc/server':
-        specifier: ^10.18.0
-        version: 10.18.0
+        specifier: ^10.19.1
+        version: 10.19.1
       class-variance-authority:
         specifier: ^0.5.1
         version: 0.5.1(typescript@5.0.3)
@@ -249,17 +234,17 @@ importers:
         specifier: ^4.28.0
         version: 4.28.0(react-dom@18.2.0)(react-native@0.71.5)(react@18.2.0)
       '@trpc/client':
-        specifier: ^10.18.0
-        version: 10.18.0(@trpc/server@10.18.0)
+        specifier: ^10.19.1
+        version: 10.19.1(@trpc/server@10.19.1)
       '@trpc/next':
-        specifier: ^10.18.0
-        version: 10.18.0(@tanstack/react-query@4.28.0)(@trpc/client@10.18.0)(@trpc/react-query@10.18.0)(@trpc/server@10.18.0)(next@13.2.4)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.19.1
+        version: 10.19.1(@tanstack/react-query@4.28.0)(@trpc/client@10.19.1)(@trpc/react-query@10.19.1)(@trpc/server@10.19.1)(next@13.2.4)(react-dom@18.2.0)(react@18.2.0)
       '@trpc/react-query':
-        specifier: ^10.18.0
-        version: 10.18.0(@tanstack/react-query@4.28.0)(@trpc/client@10.18.0)(@trpc/server@10.18.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.19.1
+        version: 10.19.1(@tanstack/react-query@4.28.0)(@trpc/client@10.19.1)(@trpc/server@10.19.1)(react-dom@18.2.0)(react@18.2.0)
       '@trpc/server':
-        specifier: ^10.18.0
-        version: 10.18.0
+        specifier: ^10.19.1
+        version: 10.19.1
       bs58:
         specifier: ^5.0.0
         version: 5.0.0
@@ -443,11 +428,11 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0
       '@trpc/client':
-        specifier: ^10.18.0
-        version: 10.18.0(@trpc/server@10.18.0)
+        specifier: ^10.19.1
+        version: 10.19.1(@trpc/server@10.19.1)
       '@trpc/server':
-        specifier: ^10.18.0
-        version: 10.18.0
+        specifier: ^10.19.1
+        version: 10.19.1
       argon2:
         specifier: ^0.30.3
         version: 0.30.3
@@ -8295,53 +8280,53 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@trpc/client@10.18.0(@trpc/server@10.18.0):
-    resolution: {integrity: sha512-2d+6r2C/xygTjDWX9jT66defgHzbQP0Z8vrvyT3XtPjqU6JNlRNuS2ZtB8xDPdOQUUVnndzZ43BMr+Zu49K0OQ==}
+  /@trpc/client@10.19.1(@trpc/server@10.19.1):
+    resolution: {integrity: sha512-H61dIgoAjiA7/SfuHlUAsqshhaxOSSRFyEfaoBwYvXzLyno+fvQRUXvxpsC4A8IsDuNX2pxiggAK8AwTNKqIzg==}
     peerDependencies:
-      '@trpc/server': 10.18.0
+      '@trpc/server': 10.19.1
     dependencies:
-      '@trpc/server': 10.18.0
+      '@trpc/server': 10.19.1
     dev: false
 
-  /@trpc/next@10.18.0(@tanstack/react-query@4.28.0)(@trpc/client@10.18.0)(@trpc/react-query@10.18.0)(@trpc/server@10.18.0)(next@13.2.4)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-GftAMy3K9AEATmsVTdc5zhCTLzSYpZ9bene7+sTlCF7QX/AMxIsd0ZUFrRnF6yg3jnxN+SvdNcF9IXeETXtGUw==}
+  /@trpc/next@10.19.1(@tanstack/react-query@4.28.0)(@trpc/client@10.19.1)(@trpc/react-query@10.19.1)(@trpc/server@10.19.1)(next@13.2.4)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-xe1Ygp4oGtn+zUJu+pCKhbfZ7aveyVAMyYrka81v0BwZTKAAGzp6YuO4t6JtW+3x+ZSJ7sHphJP2bwThJQo9kQ==}
     peerDependencies:
       '@tanstack/react-query': ^4.18.0
-      '@trpc/client': 10.18.0
-      '@trpc/react-query': 10.18.0
-      '@trpc/server': 10.18.0
+      '@trpc/client': 10.19.1
+      '@trpc/react-query': 10.19.1
+      '@trpc/server': 10.19.1
       next: '*'
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@tanstack/react-query': 4.28.0(react-dom@18.2.0)(react-native@0.71.5)(react@18.2.0)
-      '@trpc/client': 10.18.0(@trpc/server@10.18.0)
-      '@trpc/react-query': 10.18.0(@tanstack/react-query@4.28.0)(@trpc/client@10.18.0)(@trpc/server@10.18.0)(react-dom@18.2.0)(react@18.2.0)
-      '@trpc/server': 10.18.0
+      '@trpc/client': 10.19.1(@trpc/server@10.19.1)
+      '@trpc/react-query': 10.19.1(@tanstack/react-query@4.28.0)(@trpc/client@10.19.1)(@trpc/server@10.19.1)(react-dom@18.2.0)(react@18.2.0)
+      '@trpc/server': 10.19.1
       next: 13.2.4(@babel/core@7.21.3)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-ssr-prepass: 1.5.0(react@18.2.0)
     dev: false
 
-  /@trpc/react-query@10.18.0(@tanstack/react-query@4.28.0)(@trpc/client@10.18.0)(@trpc/server@10.18.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-5IxlvBh+KY/zOYCekBXzZUHtOrURQyXNnpQg9ZlEZTiyZmivGjIyH2VQIsFsGrK8IU99GAmIReQCw6uWgQrEcQ==}
+  /@trpc/react-query@10.19.1(@tanstack/react-query@4.28.0)(@trpc/client@10.19.1)(@trpc/server@10.19.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-bKtv/hz1ssoH/56i72skRcJ2Q4/gUJhrxvqDD0sJ6PczsPq4xbyO2GDs/cPaVqDpYf2EEAG9nHo48t8fW/XQ/w==}
     peerDependencies:
       '@tanstack/react-query': ^4.18.0
-      '@trpc/client': 10.18.0
-      '@trpc/server': 10.18.0
+      '@trpc/client': 10.19.1
+      '@trpc/server': 10.19.1
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@tanstack/react-query': 4.28.0(react-dom@18.2.0)(react-native@0.71.5)(react@18.2.0)
-      '@trpc/client': 10.18.0(@trpc/server@10.18.0)
-      '@trpc/server': 10.18.0
+      '@trpc/client': 10.19.1(@trpc/server@10.19.1)
+      '@trpc/server': 10.19.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@trpc/server@10.18.0:
-    resolution: {integrity: sha512-nVMqdDIF9YLOeC3g6RdAvdCPqkHFjpshSqZGThZ+fyjiWSUXj2ZKCduhJFnY77TjtgODojeaaghmzcnjxb+Onw==}
+  /@trpc/server@10.19.1:
+    resolution: {integrity: sha512-LAa8BQhMYJL+GU28cigOPKlEogCEBeff1wIKflnUj34ou1ythwTboe7Mi6rjDW3Q9EasP7s9YmqRv9Fkp8fL4Q==}
     dev: false
 
   /@ts-morph/common@0.11.1:
