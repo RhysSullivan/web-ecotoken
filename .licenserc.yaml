@@ -25,6 +25,7 @@ header:
         - "licenses"
         - "**/*.md"
         - "**/*.mdx"
+        - "**/.css"
         - "LICENSE"
         - "NOTICE"
         - "**/package.json"
